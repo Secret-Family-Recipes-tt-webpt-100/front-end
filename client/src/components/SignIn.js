@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import { onChange as customOnChange } from "../utils/FormUtils";
 
+import FormStyles from "../styles/Form.styles";
+
 const SignIn = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -11,7 +13,7 @@ const SignIn = () => {
   const onChange = (e) => customOnChange(e)(formData, setFormData);
 
   return (
-    <form>
+    <FormStyles>
       <h2>Sign In</h2>
 
       <label htmlFor="email">
@@ -34,7 +36,8 @@ const SignIn = () => {
           placeholder="Password"
         />
       </label>
-    </form>
+      <input id="submit" type="submit" value="Sign In" />
+    </FormStyles>
   );
 };
 
