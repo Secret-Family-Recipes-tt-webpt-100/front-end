@@ -18,11 +18,12 @@ const IngredientMeasurements = (props) => {
   };
 
   useEffect(() => {
-    setIngredientString(
-      amount && measurement && item
-        ? `${amount}${measurement} of ${item}`
-        : null
-    );
+    setIngredientString({
+      name:
+        amount && measurement && item
+          ? `${amount}${measurement} of ${item}`
+          : null,
+    });
   }, [amount, measurement, item]);
 
   return (

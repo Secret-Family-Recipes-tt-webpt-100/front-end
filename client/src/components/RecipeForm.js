@@ -60,16 +60,16 @@ const RecipeForm = () => {
       <label htmlFor="category">
         <span>
           {formData.category.map((category, index) => (
-            <p key={index}>{category}</p>
+            <p key={index}>{category.name}</p>
           ))}
         </span>
         Category
         <input
-          onChange={(e) => setCategoryInput(e.target.value)}
+          onChange={(e) => setCategoryInput({ name: e.target.value })}
           name="category"
           id="category"
           type="text"
-          value={categoryInput}
+          value={categoryInput.name}
         />
         <button onClick={addCategory}>Add Category</button>
       </label>
