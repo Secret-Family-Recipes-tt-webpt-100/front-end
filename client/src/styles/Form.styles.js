@@ -14,11 +14,20 @@ export default styled.form`
       font-weight: bold;
     }
 
-    input {
+    input,
+    textarea {
       border: 2px solid lightslategray;
       border-radius: 5px;
       padding-left: 1rem;
+    }
+
+    input {
       height: 1.75rem;
+    }
+
+    textarea {
+      height: 5rem;
+      max-width: 100%;
     }
 
     margin-top: 1rem;
