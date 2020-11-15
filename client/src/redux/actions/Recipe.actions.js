@@ -1,4 +1,4 @@
-import { ADD_INGREDIENT, CHANGE_STATE } from "../types";
+import { ADD_CATEGORY, ADD_INGREDIENT, CHANGE_STATE } from "../types";
 
 export const formOnChange = ({ name, value }) => {
   console.table({ name, value });
@@ -13,6 +13,15 @@ export const addIngredient = (ingredient) => {
     type: ADD_INGREDIENT,
     payload: {
       ingredient,
+    },
+  };
+};
+
+export const addCategory = (category) => {
+  return {
+    type: ADD_CATEGORY,
+    payload: {
+      category,
     },
   };
 };

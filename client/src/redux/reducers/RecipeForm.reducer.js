@@ -1,9 +1,9 @@
-import { CHANGE_STATE, ADD_INGREDIENT } from "../types";
-
-/**
- * //TODO
- * Create the default state for this Reducer
- */
+import {
+  CHANGE_STATE,
+  ADD_INGREDIENT,
+  ADD_CATEGORY,
+  CLEAR_STATE,
+} from "../types";
 
 const initialState = {
   title: "",
@@ -28,6 +28,14 @@ const RecipeFormReducer = (state = initialState, { type, payload }) => {
         ...state,
         ingredients: [...state.ingredients, ingredient],
       };
+    case ADD_CATEGORY:
+      const { category } = payload;
+      return {
+        ...state,
+        category: [...state.category, category],
+      };
+    case CLEAR_STATE:
+      return initialState;
     default:
       return state;
   }

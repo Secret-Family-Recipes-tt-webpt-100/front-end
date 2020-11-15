@@ -1,36 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 
 import FormStyles from "../styles/Form.styles";
 
-import { addCategoryUtil } from "../utils/RecipeFormUtils";
 import IngredientMeasurements from "./RecipeBookComponents/IngredientMeasurements";
+import CategoryiesInput from "./RecipeBookComponents/CategoryiesInput";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { formOnChange } from "../redux/actions/Recipe.actions";
 
 const RecipeForm = () => {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    source: "",
-    instructions: "",
-    ingredients: [],
-    category: [],
-  });
-
   // Redux State Handlers
-  const reduxFormData = useSelector((state) => state.RecipeForm);
   const dispatch = useDispatch();
-
-  const [categoryInput, setCategoryInput] = useState("");
-
-  const addCategory = (e) =>
-    addCategoryUtil(e)({
-      formData,
-      categoryInput,
-      setFormData,
-      setCategoryInput,
-    });
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -65,20 +45,7 @@ const RecipeForm = () => {
         <IngredientMeasurements />
       </label>
       <label htmlFor="category">
-        <span>
-          {formData.category.map((category, index) => (
-            <p key={index}>{category.name}</p>
-          ))}
-        </span>
-        Category
-        <input
-          onChange={(e) => setCategoryInput({ name: e.target.value })}
-          name="category"
-          id="category"
-          type="text"
-          value={categoryInput.name}
-        />
-        <button onClick={addCategory}>Add Category</button>
+        <CategoryiesInput />
       </label>
       <input type="submit" value="Create Recipe" />
     </FormStyles>
