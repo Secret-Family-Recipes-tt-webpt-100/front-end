@@ -35,6 +35,11 @@ const Navbar = () => {
               <Link to="/signup">Sign Up</Link>
             </BsNavlink>
           </NavItem>
+          <NavItem>
+            <BsNavlink>
+              <Link to="/createRecipe">Create Recipe</Link>
+            </BsNavlink>
+          </NavItem>
         </Nav>
       </Collapse>
     </BsNavbar>
