@@ -65,7 +65,7 @@ const RecipeForm = () => {
         {/* TODO:
           Create Redux state for this components so no props drilling occurs
         */}
-        <IngredientMeasurements formData={formData} setFormData={setFormData} />
+        <IngredientMeasurements />
       </label>
       <label htmlFor="category">
         <span>

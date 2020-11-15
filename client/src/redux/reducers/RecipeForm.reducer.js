@@ -1,4 +1,4 @@
-import { CHANGE_STATE } from "../types";
+import { CHANGE_STATE, ADD_INGREDIENT } from "../types";
 
 /**
  * //TODO
@@ -21,6 +21,12 @@ const RecipeFormReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         [name]: value,
+      };
+    case ADD_INGREDIENT:
+      const { ingredient } = payload;
+      return {
+        ...state,
+        ingredients: [...state.ingredients, ingredient],
       };
     default:
       return state;

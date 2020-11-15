@@ -1,20 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { addIngredientUtil } from "../../utils/RecipeFormUtils";
+import { useDispatch, useSelector } from "react-redux";
+import { addIngredient } from "../../redux/actions/Recipe.actions";
 
-const IngredientMeasurements = (props) => {
-  const { formData, setFormData } = props;
-
+const IngredientMeasurements = () => {
   const [amount, setAmount] = useState(0);
   const [measurement, setMeasurement] = useState("");
   const [item, setItem] = useState("");
 
   const [ingredientString, setIngredientString] = useState();
 
+  // Redux State Handlers
+  const dispatch = useDispatch();
+  const ingredientState = useSelector((state) => state.RecipeForm.ingredients);
+
   const onChange = (e) => (setState) => {
     e.preventDefault();
     const { value } = e.target;
 
     setState(value);
+  };
+
+  const submittingIngredient = () => {
+    const condition =
+      amount && measurement && item && ingredientString ? true : false;
+
+    if (!condition) {
+      alert("Not all the fields for ingredients have been used.");
+    } else {
+      dispatch(addIngredient(ingredientString));
+      setAmount(0);
+      setMeasurement("");
+      setItem("");
+    }
   };
 
   useEffect(() => {
@@ -29,6 +46,11 @@ const IngredientMeasurements = (props) => {
   return (
     <div>
       <h3>Ingredients</h3>
+      <div>
+        {ingredientState.map(({ name }) => (
+          <p>{name}</p>
+        ))}
+      </div>
       <label htmlFor="ingredientAmount">
         Amount
         <input
@@ -67,24 +89,7 @@ const IngredientMeasurements = (props) => {
           value={item}
         />
       </label>
-      <button
-        onClick={(e) =>
-          addIngredientUtil(e)({
-            formData,
-            setFormData,
-            ingredientString,
-            amount,
-            measurement,
-            item,
-            setIngredientString,
-            setAmount,
-            setMeasurement,
-            setItem,
-          })
-        }
-      >
-        Add Ingredient
-      </button>
+      <button onClick={submittingIngredient}>Add Ingredient</button>
     </div>
   );
 };
