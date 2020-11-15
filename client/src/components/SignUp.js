@@ -19,11 +19,23 @@ const SignUp = () => {
 
       <label htmlFor="username">
         <span>Username</span>
-        <input onChange={onChange} type="text" id="username" name="username" />
+        <input
+          onChange={onChange}
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Username"
+        />
       </label>
       <label htmlFor="email">
         <span>Email</span>
-        <input onChange={onChange} type="email" id="email" name="email" />
+        <input
+          onChange={onChange}
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+        />
       </label>
       <label htmlFor="password">
         <span>Password</span>
@@ -32,6 +44,7 @@ const SignUp = () => {
           type="password"
           id="password"
           name="password"
+          placeholder="Password"
         />
       </label>
       <input id="submit" type="submit" value="Sign Up" />
