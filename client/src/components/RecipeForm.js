@@ -62,9 +62,6 @@ const RecipeForm = () => {
         <textarea onChange={reduxOnChange} name="instructions" type="text" />
       </label>
       <label htmlFor="ingredients">
-        {/* TODO:
-          Create Redux state for this components so no props drilling occurs
-        */}
         <IngredientMeasurements />
       </label>
       <label htmlFor="category">
