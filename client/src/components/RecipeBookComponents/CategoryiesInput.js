@@ -26,11 +26,11 @@ const CategoryiesInput = () => {
       </span>
       Category
       <input
-        onChange={(e) => setCategoryInput({ name: e.target.value })}
+        value={categoryInput}
+        onChange={(e) => setCategoryInput(e.target.value)}
         name="category"
         id="category"
         type="text"
-        value={categoryInput.name}
       />
       <button onClick={submittingCategory}>Add Category</button>
     </>

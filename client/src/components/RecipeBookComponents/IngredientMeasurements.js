@@ -35,20 +35,19 @@ const IngredientMeasurements = () => {
   };
 
   useEffect(() => {
-    setIngredientString({
-      name:
-        amount && measurement && item
-          ? `${amount}${measurement} of ${item}`
-          : null,
-    });
+    setIngredientString(
+      amount && measurement && item
+        ? `${amount}${measurement} of ${item}`
+        : null
+    );
   }, [amount, measurement, item]);
 
   return (
     <div>
       <h3>Ingredients</h3>
       <div>
-        {ingredientState.map(({ name }) => (
-          <p>{name}</p>
+        {ingredientState.map(({ name }, index) => (
+          <p key={index}>{name}</p>
         ))}
       </div>
       <label htmlFor="ingredientAmount">

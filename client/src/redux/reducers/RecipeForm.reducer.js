@@ -26,13 +26,13 @@ const RecipeFormReducer = (state = initialState, { type, payload }) => {
       const { ingredient } = payload;
       return {
         ...state,
-        ingredients: [...state.ingredients, ingredient],
+        ingredients: [...state.ingredients, { name: ingredient }],
       };
     case ADD_CATEGORY:
       const { category } = payload;
       return {
         ...state,
-        category: [...state.category, category],
+        category: [...state.category, { name: category }],
       };
     case CLEAR_STATE:
       return initialState;
