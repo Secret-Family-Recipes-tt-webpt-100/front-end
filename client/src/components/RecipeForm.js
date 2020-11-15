@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
-import { onChange as customOnChange } from "../utils/FormUtils";
 import FormStyles from "../styles/Form.styles";
 
 import { addCategoryUtil } from "../utils/RecipeFormUtils";
 import IngredientMeasurements from "./RecipeBookComponents/IngredientMeasurements";
+
+import { useDispatch, useSelector } from "react-redux";
+import { formOnChange } from "../redux/actions/Recipe.actions";
 
 const RecipeForm = () => {
   const [formData, setFormData] = useState({
@@ -16,9 +18,11 @@ const RecipeForm = () => {
     category: [],
   });
 
-  const [categoryInput, setCategoryInput] = useState("");
+  // Redux State Handlers
+  const reduxFormData = useSelector((state) => state.RecipeForm);
+  const dispatch = useDispatch();
 
-  const onChange = (e) => customOnChange(e)(formData, setFormData);
+  const [categoryInput, setCategoryInput] = useState("");
 
   const addCategory = (e) =>
     addCategoryUtil(e)({
@@ -32,24 +36,30 @@ const RecipeForm = () => {
     e.preventDefault();
   };
 
+  const reduxOnChange = (e) => dispatch(formOnChange(e.target));
+
   return (
     <FormStyles onSubmit={onSubmit}>
       <h2>Recipe Form</h2>
       <label htmlFor="title">
         Title
-        <input id="title" name="title" type="text" />
+        <input onChange={reduxOnChange} id="title" name="title" type="text" />
       </label>
       <label htmlFor="description">
         Description
-        <textarea name="description" id="description"></textarea>
+        <textarea
+          onChange={reduxOnChange}
+          name="description"
+          id="description"
+        ></textarea>
       </label>
       <label htmlFor="source">
         Source
-        <input id="source" name="source" type="text" />
+        <input onChange={reduxOnChange} id="source" name="source" type="text" />
       </label>
       <label htmlFor="instructions">
         Instructions
-        <textarea name="instructions" type="text" />
+        <textarea onChange={reduxOnChange} name="instructions" type="text" />
       </label>
       <label htmlFor="ingredients">
         {/* TODO:
