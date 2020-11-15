@@ -7,17 +7,20 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 
 import NavBar from "./components/Navbar";
+import AppStyles from "./styles/App.styles";
 
 const App = () => {
   return (
     <Router>
-      <NavBar />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/createRecipe" component={RecipeForm} />
-        <Route exact path="/signin" component={SignIn} />
-        <Route exact path="/signup" component={SignUp} />
-      </Switch>
+      <AppStyles>
+        <NavBar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/createRecipe" component={RecipeForm} />
+          <Route exact path="/signin" component={SignIn} />
+          <Route exact path="/signup" component={SignUp} />
+        </Switch>
+      </AppStyles>
     </Router>
   );
 };

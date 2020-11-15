@@ -41,12 +41,8 @@ const RecipeForm = () => {
         Instructions
         <textarea onChange={reduxOnChange} name="instructions" type="text" />
       </label>
-      <label htmlFor="ingredients">
-        <IngredientMeasurements />
-      </label>
-      <label htmlFor="category">
-        <CategoryiesInput />
-      </label>
+      <IngredientMeasurements />
+      <CategoryiesInput />
       <input type="submit" value="Create Recipe" />
     </FormStyles>
   );

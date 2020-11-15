@@ -18,19 +18,24 @@ export default styled.form`
     textarea {
       border: 2px solid lightslategray;
       border-radius: 5px;
-      padding-left: 1rem;
+      padding-left: 0.5rem;
+    }
+
+    input:focus,
+    textarea:focus {
+      border: 4px solid royalblue;
     }
 
     input {
-      height: 1.75rem;
+      height: 2rem;
     }
 
     textarea {
       height: 5rem;
       max-width: 100%;
+      padding-top: 0.15rem;
     }
 
-    margin-top: 1rem;
     width: 100%;
     justify-self: center;
 
@@ -40,6 +45,16 @@ export default styled.form`
   h2 {
     text-align: center;
     font-size: 2rem;
+  }
+
+  button {
+    border: none;
+    border-radius: 10px;
+    background-color: skyblue;
+    font-size: 1.1rem;
+    font-weight: bold;
+    width: 100%;
+    padding: 0.5rem 0;
   }
 
   #submit {
@@ -52,6 +67,7 @@ export default styled.form`
     color: white;
 
     font-size: 1.25rem;
+    font-weight: bold;
     text-transform: uppercase;
   }
 `;
