@@ -6,9 +6,12 @@ import RecipeForm from "./components/RecipeForm";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 
+import NavBar from "./components/Navbar";
+
 const App = () => {
   return (
     <Router>
+      <NavBar />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/createRecipe" component={RecipeForm} />
