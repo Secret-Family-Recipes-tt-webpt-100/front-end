@@ -3,33 +3,32 @@ import {
   ADD_INGREDIENT,
   ADD_CATEGORY,
   CLEAR_STATE,
-} from "../types";
+} from '../types';
 
 const initialState = {
-  title: "",
-  description: "",
-  source: "",
-  instructions: "",
+  title: '',
+  description: '',
+  source: '',
+  instructions: '',
   ingredients: [],
   category: [],
 };
 
-const RecipeFormReducer = (state = initialState, { type, payload }) => {
+const RecipeFormReducer = ({ type, payload }, state = initialState) => {
+  const { name, value, ingredient, category } = payload;
+
   switch (type) {
     case CHANGE_STATE:
-      const { name, value } = payload;
       return {
         ...state,
         [name]: value,
       };
     case ADD_INGREDIENT:
-      const { ingredient } = payload;
       return {
         ...state,
         ingredients: [...state.ingredients, { name: ingredient }],
       };
     case ADD_CATEGORY:
-      const { category } = payload;
       return {
         ...state,
         category: [...state.category, { name: category }],

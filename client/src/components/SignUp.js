@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { onChange as customOnChange } from "../utils/FormUtils";
+import { onChange as customOnChange } from '../utils/FormUtils';
 
-import FormStyles from "../styles/Form.styles";
+import FormStyles from '../styles/Form.styles';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
+    username: '',
+    email: '',
+    password: '',
   });
 
   const onChange = (e) => customOnChange(e)(formData, setFormData);
