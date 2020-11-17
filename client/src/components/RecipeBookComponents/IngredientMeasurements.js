@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addIngredient } from "../../redux/actions/Recipe.actions";
+import IngredientMeasurementStyles from "../../styles/IngredientMeasurement.styles";
 
 const IngredientMeasurements = () => {
   const [amount, setAmount] = useState(0);
@@ -43,13 +44,13 @@ const IngredientMeasurements = () => {
   }, [amount, measurement, item]);
 
   return (
-    <div>
+    <IngredientMeasurementStyles>
       <h3>Ingredients</h3>
-      <div>
+      <ul>
         {ingredientState.map(({ name }, index) => (
-          <p key={index}>{name}</p>
+          <li key={index}>{name}</li>
         ))}
-      </div>
+      </ul>
       <label htmlFor="ingredientAmount">
         Amount
         <input
@@ -89,7 +90,7 @@ const IngredientMeasurements = () => {
         />
       </label>
       <button onClick={submittingIngredient}>Add Ingredient</button>
-    </div>
+    </IngredientMeasurementStyles>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCategory } from "../../redux/actions/Recipe.actions";
+import CategoriesInputStyles from "../../styles/CategoriesInput.styles";
 
 const CategoryiesInput = () => {
   const [categoryInput, setCategoryInput] = useState("");
@@ -18,12 +19,12 @@ const CategoryiesInput = () => {
   };
 
   return (
-    <>
-      <span>
+    <CategoriesInputStyles>
+      <div className="category-container">
         {categoryState.map(({ name }, index) => (
-          <p key={index}>{name}</p>
+          <span key={index}>{name}</span>
         ))}
-      </span>
+      </div>
       Category
       <input
         value={categoryInput}
@@ -33,7 +34,7 @@ const CategoryiesInput = () => {
         type="text"
       />
       <button onClick={submittingCategory}>Add Category</button>
-    </>
+    </CategoriesInputStyles>
   );
 };
 
