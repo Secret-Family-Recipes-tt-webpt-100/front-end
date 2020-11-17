@@ -1,4 +1,4 @@
-import { ADD_CATEGORY, ADD_INGREDIENT, CHANGE_STATE } from "../types";
+import { ADD_CATEGORY, ADD_INGREDIENT, CHANGE_STATE } from '../types';
 
 export const formOnChange = ({ name, value }) => {
   return {

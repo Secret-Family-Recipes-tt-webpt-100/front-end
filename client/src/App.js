@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./components/Home";
-import RecipeForm from "./components/RecipeForm";
-import SignIn from "./components/SignIn";
-import SignUp from "./components/SignUp";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './components/Home';
+import RecipeForm from './components/RecipeForm';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 
-import NavBar from "./components/Navbar";
-import AppStyles from "./styles/App.styles";
+import NavBar from './components/Navbar';
+import AppStyles from './styles/App.styles';
 
 const App = () => {
   return (

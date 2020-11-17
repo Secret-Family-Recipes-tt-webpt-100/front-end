@@ -1,14 +1,14 @@
 export const addCategoryUtil = (e) => (payload) => {
   const { formData, categoryInput, setFormData, setCategoryInput } = payload;
   if (!categoryInput) {
-    alert("You have to type in a category");
+    alert('You have to type in a category');
   } else {
     e.preventDefault();
     setFormData({
       ...formData,
       category: [...formData.category, categoryInput],
     });
-    setCategoryInput("");
+    setCategoryInput('');
   }
 };
 
@@ -27,11 +27,10 @@ export const addIngredientUtil = (e) => (payload) => {
   } = payload;
   e.preventDefault();
 
-  const condition =
-    amount && measurement && item && ingredientString ? true : false;
+  const condition = !!(amount && measurement && item && ingredientString);
 
   if (!condition) {
-    alert("Not all the fields for ingredients have been used.");
+    alert('Not all the fields for ingredients have been used.');
   } else {
     setFormData({
       ...formData,
@@ -39,8 +38,8 @@ export const addIngredientUtil = (e) => (payload) => {
     });
 
     setAmount(0);
-    setMeasurement("");
-    setItem("");
+    setMeasurement('');
+    setItem('');
     setIngredientString(null);
   }
 

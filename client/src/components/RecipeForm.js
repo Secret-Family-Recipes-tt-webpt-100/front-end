@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import FormStyles from "../styles/Form.styles";
+import FormStyles from '../styles/Form.styles';
 
-import IngredientMeasurements from "./RecipeBookComponents/IngredientMeasurements";
-import CategoryiesInput from "./RecipeBookComponents/CategoryiesInput";
+import IngredientMeasurements from './RecipeBookComponents/IngredientMeasurements';
+import CategoryiesInput from './RecipeBookComponents/CategoryiesInput';
 
-import { useDispatch, useSelector } from "react-redux";
-import { formOnChange } from "../redux/actions/Recipe.actions";
+import { useDispatch, useSelector } from 'react-redux';
+import { formOnChange } from '../redux/actions/Recipe.actions';
 
 const RecipeForm = () => {
   // Redux State Handlers

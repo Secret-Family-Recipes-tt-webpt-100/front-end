@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   Collapse,
@@ -8,7 +8,7 @@ import {
   NavbarToggler,
   NavItem,
   NavLink as BsNavlink,
-} from "reactstrap";
+} from 'reactstrap';
 
 const Navbar = () => {
   const [collapsed, setCollapsed] = useState(true);

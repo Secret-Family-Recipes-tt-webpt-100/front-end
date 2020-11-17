@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addCategory } from "../../redux/actions/Recipe.actions";
-import CategoriesInputStyles from "../../styles/CategoriesInput.styles";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCategory } from '../../redux/actions/Recipe.actions';
+import CategoriesInputStyles from '../../styles/CategoriesInput.styles';
 
 const CategoryiesInput = () => {
-  const [categoryInput, setCategoryInput] = useState("");
+  const [categoryInput, setCategoryInput] = useState('');
 
   const dispatch = useDispatch();
   const categoryState = useSelector((state) => state.RecipeForm.category);
 
   const submittingCategory = () => {
     if (!categoryInput) {
-      alert("You need to type something to add categories.");
+      alert('You need to type something to add categories.');
     } else {
       dispatch(addCategory(categoryInput));
-      setCategoryInput("");
+      setCategoryInput('');
     }
   };
 

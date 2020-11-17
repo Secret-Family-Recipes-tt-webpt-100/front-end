@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addIngredient } from "../../redux/actions/Recipe.actions";
-import IngredientMeasurementStyles from "../../styles/IngredientMeasurement.styles";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addIngredient } from '../../redux/actions/Recipe.actions';
+import IngredientMeasurementStyles from '../../styles/IngredientMeasurement.styles';
 
 const IngredientMeasurements = () => {
   const [amount, setAmount] = useState(0);
-  const [measurement, setMeasurement] = useState("");
-  const [item, setItem] = useState("");
+  const [measurement, setMeasurement] = useState('');
+  const [item, setItem] = useState('');
 
   const [ingredientString, setIngredientString] = useState();
 
@@ -22,16 +22,15 @@ const IngredientMeasurements = () => {
   };
 
   const submittingIngredient = () => {
-    const condition =
-      amount && measurement && item && ingredientString ? true : false;
+    const condition = !!(amount && measurement && item && ingredientString);
 
     if (!condition) {
-      alert("Not all the fields for ingredients have been used.");
+      alert('Not all the fields for ingredients have been used.');
     } else {
       dispatch(addIngredient(ingredientString));
       setAmount(0);
-      setMeasurement("");
-      setItem("");
+      setMeasurement('');
+      setItem('');
     }
   };
 
