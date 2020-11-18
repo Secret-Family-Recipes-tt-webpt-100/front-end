@@ -14,24 +14,26 @@ const initialState = {
   category: [],
 };
 
-const RecipeFormReducer = ({ type, payload }, state = initialState) => {
-  const { name, value, ingredient, category } = payload;
-
-  switch (type) {
+// eslint-disable-next-line default-param-last
+const RecipeFormReducer = (state = initialState, action) => {
+  switch (action.type) {
     case CHANGE_STATE:
       return {
         ...state,
-        [name]: value,
+        [name]: action.payload.value,
       };
     case ADD_INGREDIENT:
       return {
         ...state,
-        ingredients: [...state.ingredients, { name: ingredient }],
+        ingredients: [
+          ...state.ingredients,
+          { name: action.payload.ingredient },
+        ],
       };
     case ADD_CATEGORY:
       return {
         ...state,
-        category: [...state.category, { name: category }],
+        category: [...state.category, { name: action.payload.category }],
       };
     case CLEAR_STATE:
       return initialState;

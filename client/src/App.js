@@ -8,6 +8,7 @@ import SignUp from './components/SignUp';
 
 import NavBar from './components/Navbar';
 import AppStyles from './styles/App.styles';
+import DetailedRecipe from './components/DetailedRecipe';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route exact path="/createRecipe" component={RecipeForm} />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/recipes/:id" component={DetailedRecipe} />
         </Switch>
       </AppStyles>
     </Router>
