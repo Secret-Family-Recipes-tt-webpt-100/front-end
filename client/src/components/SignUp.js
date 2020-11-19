@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { onChange as customOnChange } from '../utils/FormUtils';
 
@@ -11,9 +13,11 @@ const SignUp = () => {
     password: '',
   });
 
+  const authenticated = useSelector((state) => state.AuthUser.authenticated);
+
   const onChange = (e) => customOnChange(e)(formData, setFormData);
 
-  return (
+  return authenticated ? (
     <FormStyles>
       <h2>Sign Up</h2>
 
@@ -49,6 +53,8 @@ const SignUp = () => {
       </label>
       <input id="submit" type="submit" value="Sign Up" />
     </FormStyles>
+  ) : (
+    <Redirect to="/" />
   );
 };
 

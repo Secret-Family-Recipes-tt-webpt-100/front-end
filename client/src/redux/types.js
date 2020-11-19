@@ -8,4 +8,7 @@ export const REMOVE_INGREDIENT = 'REMOVE_INGREDIENT';
 export const ADD_CATEGORY = 'ADD_CATEGORY';
 export const REMOVE_CATEGORY = 'REMOVE_CATEGORY';
 
-export const CLEAR_STATE = 'CLEAR_STATE';
+export const CLEAR_FORM_STATE = 'CLEAR_FORM_STATE';
+
+// Auth state
+export const IS_AUTHENTICATED = 'IS_AUTHENTICATED';

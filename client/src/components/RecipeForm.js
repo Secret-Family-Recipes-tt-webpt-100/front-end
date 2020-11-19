@@ -7,6 +7,7 @@ import CategoryiesInput from './RecipeBookComponents/CategoryiesInput';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { formOnChange } from '../redux/actions/Recipe.actions';
+// import Axios from 'axios';
 
 const RecipeForm = () => {
   // Redux State Handlers
@@ -16,6 +17,10 @@ const RecipeForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    // Axios.post('https://secret-family-recipies.herokuapp.com/api/recipies', {
+    //   ...RecipeFormState,
+    // });
+
     console.log(RecipeFormState);
   };
 

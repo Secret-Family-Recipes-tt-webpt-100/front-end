@@ -1,15 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import RecipeStyles from '../styles/Recipe.styles';
 
 const Recipe = ({ recipe }) => {
   const { id, image, title, source } = recipe;
   return (
-    <div key={id}>
+    <RecipeStyles key={id}>
       <img src={image} alt={`Recipe for ${title}`} />
-      <h3>{title}</h3>
-      <span>{source}</span>
-      <Link to={`/recipes/${id}`}>See More</Link>
-    </div>
+      <div className="content">
+        <h3>{title}</h3>
+        <span>{source}</span>
+        <Link to={`/recipes/${id}`}>See More</Link>
+      </div>
+    </RecipeStyles>
   );
 };
 

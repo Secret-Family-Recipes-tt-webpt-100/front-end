@@ -2,7 +2,7 @@ import {
   CHANGE_STATE,
   ADD_INGREDIENT,
   ADD_CATEGORY,
-  CLEAR_STATE,
+  CLEAR_FORM_STATE,
 } from '../types';
 
 const initialState = {
@@ -20,7 +20,7 @@ const RecipeFormReducer = (state = initialState, action) => {
     case CHANGE_STATE:
       return {
         ...state,
-        [name]: action.payload.value,
+        [action.payload.name]: action.payload.value,
       };
     case ADD_INGREDIENT:
       return {
@@ -35,7 +35,7 @@ const RecipeFormReducer = (state = initialState, action) => {
         ...state,
         category: [...state.category, { name: action.payload.category }],
       };
-    case CLEAR_STATE:
+    case CLEAR_FORM_STATE:
       return initialState;
     default:
       return state;

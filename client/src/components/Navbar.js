@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import {
@@ -15,6 +16,32 @@ const Navbar = () => {
 
   const toggleNavbar = () => setCollapsed(!collapsed);
 
+  const authenticated = useSelector((state) => state.AuthUser.authenticated);
+
+  const renderNavbarLinks = () => {
+    return !authenticated ? (
+      <>
+        {' '}
+        <NavItem>
+          <BsNavlink>
+            <Link to="/signin">Sign In</Link>
+          </BsNavlink>
+        </NavItem>
+        <NavItem>
+          <BsNavlink>
+            <Link to="/signup">Sign Up</Link>
+          </BsNavlink>
+        </NavItem>
+      </>
+    ) : (
+      <NavItem>
+        <BsNavlink>
+          <Link to="/createRecipe">Create Recipe</Link>
+        </BsNavlink>
+      </NavItem>
+    );
+  };
+
   return (
     <BsNavbar color="light" light expand="md">
       <NavbarToggler onClick={toggleNavbar} />
@@ -25,21 +52,7 @@ const Navbar = () => {
               <Link to="/">Home</Link>
             </BsNavlink>
           </NavItem>
-          <NavItem>
-            <BsNavlink>
-              <Link to="/signin">Sign In</Link>
-            </BsNavlink>
-          </NavItem>
-          <NavItem>
-            <BsNavlink>
-              <Link to="/signup">Sign Up</Link>
-            </BsNavlink>
-          </NavItem>
-          <NavItem>
-            <BsNavlink>
-              <Link to="/createRecipe">Create Recipe</Link>
-            </BsNavlink>
-          </NavItem>
+          {renderNavbarLinks()}
         </Nav>
       </Collapse>
     </BsNavbar>

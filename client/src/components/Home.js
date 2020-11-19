@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Recipe from './Recipe';
 import Axios from 'axios';
+import HomeStyles from '../styles/Home.styles';
 
 const Home = () => {
   const [recipes, setRecipes] = useState();
@@ -14,16 +15,16 @@ const Home = () => {
   );
 
   return (
-    <div>
+    <HomeStyles>
       <h2>Home Page</h2>
-      <div>
+      <div className="recipe-list">
         {recipes
           ? recipes.map((recipe) => {
               return <Recipe key={recipe.id} recipe={recipe} />;
             })
           : null}
       </div>
-    </div>
+    </HomeStyles>
   );
 };
 
