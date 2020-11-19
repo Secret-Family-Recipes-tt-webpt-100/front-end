@@ -21,7 +21,8 @@ const IngredientMeasurements = () => {
     setState(value);
   };
 
-  const submittingIngredient = () => {
+  const submittingIngredient = (e) => {
+    e.preventDefault();
     const condition = !!(amount && measurement && item && ingredientString);
 
     if (!condition) {

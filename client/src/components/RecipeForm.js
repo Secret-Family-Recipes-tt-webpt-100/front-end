@@ -3,11 +3,11 @@ import React from 'react';
 import FormStyles from '../styles/Form.styles';
 
 import IngredientMeasurements from './RecipeBookComponents/IngredientMeasurements';
-import CategoryiesInput from './RecipeBookComponents/CategoryiesInput';
+import CategoriesInput from './RecipeBookComponents/CategoriesInput';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { formOnChange } from '../redux/actions/Recipe.actions';
-// import Axios from 'axios';
+import Axios from 'axios';
 
 const RecipeForm = () => {
   // Redux State Handlers
@@ -17,11 +17,19 @@ const RecipeForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // Axios.post('https://secret-family-recipies.herokuapp.com/api/recipies', {
-    //   ...RecipeFormState,
-    // });
-
-    console.log(RecipeFormState);
+    Axios.post(
+      'https://secret-family-recipies.herokuapp.com/api/recipies',
+      {
+        RecipeFormState,
+      },
+      {
+        headers: {
+          authentication: localStorage.getItem('token'),
+        },
+      }
+    )
+      .then((res) => console.log(res.data))
+      .catch((err) => console.error(err));
   };
 
   const reduxOnChange = (e) => dispatch(formOnChange(e.target));
@@ -68,7 +76,7 @@ const RecipeForm = () => {
         />
       </label>
       <IngredientMeasurements />
-      <CategoryiesInput />
+      <CategoriesInput />
       <input type="submit" value="Create Recipe" />
     </FormStyles>
   );
