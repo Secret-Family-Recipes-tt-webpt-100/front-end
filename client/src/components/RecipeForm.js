@@ -24,7 +24,7 @@ const RecipeForm = () => {
       },
       {
         headers: {
-          authentication: localStorage.getItem('token'),
+          authorization: localStorage.getItem('token'),
         },
       }
     )

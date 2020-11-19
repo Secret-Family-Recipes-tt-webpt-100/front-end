@@ -38,7 +38,7 @@ const SignIn = () => {
 
   const onChange = (e) => customOnChange(e)(formData, setFormData);
 
-  return authenticated ? (
+  return !authenticated ? (
     <FormStyles onSubmit={onSubmit}>
       <h2>Sign In</h2>
 

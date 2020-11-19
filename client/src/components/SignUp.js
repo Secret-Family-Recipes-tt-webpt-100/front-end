@@ -17,7 +17,7 @@ const SignUp = () => {
 
   const onChange = (e) => customOnChange(e)(formData, setFormData);
 
-  return authenticated ? (
+  return !authenticated ? (
     <FormStyles>
       <h2>Sign Up</h2>
 
