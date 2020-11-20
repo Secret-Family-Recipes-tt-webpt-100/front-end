@@ -10,7 +10,7 @@ import {
   NavItem,
   NavLink as BsNavlink,
 } from 'reactstrap';
-import { isAuthenticated } from '../redux/actions/AuthUser.actions';
+import { isAuthenticated, logout } from '../redux/actions/AuthUser.actions';
 
 const Navbar = () => {
   const [collapsed, setCollapsed] = useState(true);
@@ -47,6 +47,7 @@ const Navbar = () => {
           onClick={() => {
             localStorage.removeItem('token');
             dispatch(isAuthenticated());
+            dispatch(logout());
           }}
         >
           <BsNavlink>Logout</BsNavlink>

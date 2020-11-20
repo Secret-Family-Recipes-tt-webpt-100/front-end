@@ -16,7 +16,7 @@ const Home = () => {
 
   return (
     <HomeStyles>
-      <h2>Home Page</h2>
+      <h1>Home Page</h1>
       <div className="recipe-list">
         {recipes
           ? recipes.map((recipe) => {
