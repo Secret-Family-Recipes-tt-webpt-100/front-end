@@ -17,10 +17,15 @@ const RecipeForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    const data = {
+      ...RecipeFormState,
+      sourceId: '1',
+    };
+
     Axios.post(
       'https://secret-family-recipies.herokuapp.com/api/recipies',
       {
-        RecipeFormState,
+        ...data,
       },
       {
         headers: {

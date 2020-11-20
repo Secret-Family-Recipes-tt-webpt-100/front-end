@@ -12,3 +12,4 @@ export const CLEAR_FORM_STATE = 'CLEAR_FORM_STATE';
 
 // Auth state
 export const IS_AUTHENTICATED = 'IS_AUTHENTICATED';
+export const LOGOUT = 'LOGOUT';

@@ -29,9 +29,9 @@ const SignIn = () => {
       formData
     )
       .then((res) => {
-        const { token } = res.data;
+        const { token, userId: sourceId } = res.data;
         localStorage.setItem('token', token);
-        dispatch(isAuthenticated());
+        dispatch(isAuthenticated(sourceId));
       })
       .catch((err) => console.error(err));
   };
