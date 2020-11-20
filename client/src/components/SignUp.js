@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { onChange as customOnChange } from '../utils/FormUtils';
 
 import FormStyles from '../styles/Form.styles';
+import Axios from 'axios';
+import { isAuthenticated } from '../redux/actions/AuthUser.actions';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -13,12 +15,31 @@ const SignUp = () => {
     password: '',
   });
 
+  const dispatch = useDispatch();
+
   const authenticated = useSelector((state) => state.AuthUser.authenticated);
 
   const onChange = (e) => customOnChange(e)(formData, setFormData);
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    Axios.post(
+      'https://secret-family-recipies.herokuapp.com/api/auth/signup',
+      formData
+    )
+      .then((res) => {
+        const { id: sourceId } = res.data;
+        dispatch(
+          isAuthenticated({
+            sourceId,
+          })
+        );
+      })
+      .catch((err) => console.error(err));
+  };
+
   return !authenticated ? (
-    <FormStyles>
+    <FormStyles onSubmit={onSubmit}>
       <h2>Sign Up</h2>
 
       <label htmlFor="username">
