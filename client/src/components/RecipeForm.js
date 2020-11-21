@@ -14,27 +14,38 @@ const RecipeForm = () => {
   const RecipeFormState = useSelector((state) => state.RecipeForm);
   const { description, instructions, source, title } = RecipeFormState;
   const dispatch = useDispatch();
+  const sourceId = useSelector((state) => state.AuthUser.sourceId);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const data = {
       ...RecipeFormState,
-      sourceId: '1',
+      sourceId,
     };
+    try {
+      const postedRecipe = await Axios.post(
+        'https://secret-family-recipies.herokuapp.com/api/recipies',
+        data,
+        {
+          headers: {
+            authorization: localStorage.getItem('token'),
+          },
+        }
+      );
 
-    Axios.post(
-      'https://secret-family-recipies.herokuapp.com/api/recipies',
-      {
-        ...data,
-      },
-      {
-        headers: {
-          authorization: localStorage.getItem('token'),
-        },
-      }
-    )
-      .then((res) => console.log(res.data))
-      .catch((err) => console.error(err));
+      const { id: postId } = postedRecipe.data;
+
+      await Axios.post(
+        `https://secret-family-recipies.herokuapp.com/api/recipies/i/${postId}`,
+        RecipeForm.ingredients
+      );
+      await Axios.post(
+        `https://secret-family-recipies.herokuapp.com/api/recipies/c/${postId}`,
+        RecipeFormState.categories
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const reduxOnChange = (e) => dispatch(formOnChange(e.target));

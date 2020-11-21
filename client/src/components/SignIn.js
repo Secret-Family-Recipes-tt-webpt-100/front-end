@@ -31,6 +31,7 @@ const SignIn = () => {
       .then((res) => {
         const { token, userId: sourceId } = res.data;
         localStorage.setItem('token', token);
+        localStorage.setItem('sourceId', sourceId);
         dispatch(isAuthenticated(sourceId));
       })
       .catch((err) => console.error(err));

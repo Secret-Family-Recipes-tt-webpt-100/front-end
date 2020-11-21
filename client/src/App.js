@@ -16,7 +16,7 @@ import PrivateRoute from './components/PrivateRoute';
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(isAuthenticated());
+    dispatch(isAuthenticated(localStorage.getItem('sourceId')));
   }, [isAuthenticated]);
 
   return (
