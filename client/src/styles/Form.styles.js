@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export default styled.form`
-  margin: 2rem;
+  margin: 2rem auto;
+  width: 40rem;
 
   &,
   label {

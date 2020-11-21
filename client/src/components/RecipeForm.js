@@ -1,20 +1,31 @@
-import React from 'react';
-
-import FormStyles from '../styles/Form.styles';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 import IngredientMeasurements from './RecipeBookComponents/IngredientMeasurements';
 import CategoriesInput from './RecipeBookComponents/CategoriesInput';
-
-import { useDispatch, useSelector } from 'react-redux';
 import { formOnChange } from '../redux/actions/Recipe.actions';
-import Axios from 'axios';
+
+import FormStyles from '../styles/Form.styles';
 
 const RecipeForm = () => {
   // Redux State Handlers
   const RecipeFormState = useSelector((state) => state.RecipeForm);
-  const { description, instructions, source, title } = RecipeFormState;
-  const dispatch = useDispatch();
   const sourceId = useSelector((state) => state.AuthUser.sourceId);
+  const dispatch = useDispatch();
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const { description, instructions, source, title } = RecipeFormState;
+
+  const asyncAddItems = (type, id, itemArray) => {
+    itemArray.forEach(async (item) => {
+      await Axios.post(
+        `https://secret-family-recipies.herokuapp.com/api/recipies/${type}/${id}`,
+        item
+      );
+    });
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -35,22 +46,17 @@ const RecipeForm = () => {
 
       const { id: postId } = postedRecipe.data;
 
-      await Axios.post(
-        `https://secret-family-recipies.herokuapp.com/api/recipies/i/${postId}`,
-        RecipeForm.ingredients
-      );
-      await Axios.post(
-        `https://secret-family-recipies.herokuapp.com/api/recipies/c/${postId}`,
-        RecipeFormState.categories
-      );
+      asyncAddItems('i', postId, RecipeForm.ingredients);
+      asyncAddItems('c', postId, RecipeForm.categories);
     } catch (error) {
       console.error(error);
     }
+    setFormSubmitted(true);
   };
 
   const reduxOnChange = (e) => dispatch(formOnChange(e.target));
 
-  return (
+  return !formSubmitted ? (
     <FormStyles onSubmit={onSubmit}>
       <h2>Recipe Form</h2>
       <label htmlFor="title">
@@ -95,6 +101,8 @@ const RecipeForm = () => {
       <CategoriesInput />
       <input type="submit" value="Create Recipe" />
     </FormStyles>
+  ) : (
+    <Redirect to="/" />
   );
 };
 
