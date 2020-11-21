@@ -7,25 +7,48 @@ export default styled.div`
     display: grid;
   }
 
+  .instructions,
+  .ingredients {
+    background-color: lightgrey;
+    padding: 0.5rem;
+  }
+
   img {
     object-fit: cover;
-    min-width: 30rem;
-    height: 30rem;
+    min-width: 10rem;
+    max-height: 30rem;
     margin: 0 auto;
     grid-area: img;
+    border: 3px solid black;
+    border-radius: 10px;
   }
 
   h1 {
     text-align: center;
     grid-area: title;
+    font-weight: bold;
+  }
+
+  .instructions,
+  .ingredients {
+    h3 {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .instructions {
+    p {
+      font-size: 1.15rem;
+    }
   }
 
   .ingredients {
     grid-area: ingredients;
-  }
-
-  ul {
-    list-style-type: circle;
+    padding-left: 1rem;
+    ul {
+      list-style-type: circle;
+      padding: 0 1.75rem;
+    }
   }
 
   grid-template-columns: 2fr 1fr;
@@ -36,10 +59,11 @@ export default styled.div`
     'instructions ingredients';
 
   row-gap: 2rem;
-  column-gap: 1rem;
-  width: 50rem;
+  /* column-gap: 1rem; */
+  max-width: 60rem;
   margin: 1rem auto;
-  padding: 0.5rem 2rem;
+  padding: 2rem;
 
   border: 1px solid black;
+  background-color: tan;
 `;

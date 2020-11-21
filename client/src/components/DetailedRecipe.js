@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import DefaultImage from '../img/dish.svg';
 import DetailedRecipeStyles from '../styles/DetailedRecipe.styles';
@@ -8,12 +9,23 @@ import DetailedRecipeStyles from '../styles/DetailedRecipe.styles';
 const DetailedRecipe = () => {
   const [recipe, setRecipe] = useState();
   const { id } = useParams();
+  const { authenticated: isAuthenticated, sourceId } = useSelector(
+    (state) => state.AuthUser
+  );
 
   useEffect(() => {
     Axios.get(
       `https://secret-family-recipies.herokuapp.com/api/recipies/${id}`
     ).then((res) => setRecipe(res.data));
   }, [setRecipe]);
+
+  const renderFucntionButtons = () => {
+    return isAuthenticated && Number(sourceId) === recipe.sourceId ? (
+      <div className="function-buttons">
+        <button>Edit</button>
+      </div>
+    ) : null;
+  };
 
   const RecipeInfo = () => {
     const { image, title, instructions, ingredients } = recipe;
@@ -41,6 +53,7 @@ const DetailedRecipe = () => {
               : null}
           </ul>
         </div>
+        {renderFucntionButtons()}
         {/* <div className="categories">
           <ul>
             {categories

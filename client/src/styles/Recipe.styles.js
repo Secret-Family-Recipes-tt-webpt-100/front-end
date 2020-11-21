@@ -31,6 +31,7 @@ export default styled.div`
     background: royalblue;
     color: white;
     padding: 0.75rem;
+    width: 100%;
   }
 
   display: flex;
