@@ -3,20 +3,49 @@ import React from 'react';
 import FormStyles from '../styles/Form.styles';
 
 import IngredientMeasurements from './RecipeBookComponents/IngredientMeasurements';
-import CategoryiesInput from './RecipeBookComponents/CategoryiesInput';
+import CategoriesInput from './RecipeBookComponents/CategoriesInput';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { formOnChange } from '../redux/actions/Recipe.actions';
+import Axios from 'axios';
 
 const RecipeForm = () => {
   // Redux State Handlers
   const RecipeFormState = useSelector((state) => state.RecipeForm);
   const { description, instructions, source, title } = RecipeFormState;
   const dispatch = useDispatch();
+  const sourceId = useSelector((state) => state.AuthUser.sourceId);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(RecipeFormState);
+    const data = {
+      ...RecipeFormState,
+      sourceId,
+    };
+    try {
+      const postedRecipe = await Axios.post(
+        'https://secret-family-recipies.herokuapp.com/api/recipies',
+        data,
+        {
+          headers: {
+            authorization: localStorage.getItem('token'),
+          },
+        }
+      );
+
+      const { id: postId } = postedRecipe.data;
+
+      await Axios.post(
+        `https://secret-family-recipies.herokuapp.com/api/recipies/i/${postId}`,
+        RecipeForm.ingredients
+      );
+      await Axios.post(
+        `https://secret-family-recipies.herokuapp.com/api/recipies/c/${postId}`,
+        RecipeFormState.categories
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const reduxOnChange = (e) => dispatch(formOnChange(e.target));
@@ -63,7 +92,7 @@ const RecipeForm = () => {
         />
       </label>
       <IngredientMeasurements />
-      <CategoryiesInput />
+      <CategoriesInput />
       <input type="submit" value="Create Recipe" />
     </FormStyles>
   );

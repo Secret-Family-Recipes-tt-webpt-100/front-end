@@ -2,7 +2,7 @@ import {
   CHANGE_STATE,
   ADD_INGREDIENT,
   ADD_CATEGORY,
-  CLEAR_STATE,
+  CLEAR_FORM_STATE,
 } from '../types';
 
 const initialState = {
@@ -14,26 +14,28 @@ const initialState = {
   category: [],
 };
 
-const RecipeFormReducer = ({ type, payload }, state = initialState) => {
-  const { name, value, ingredient, category } = payload;
-
-  switch (type) {
+// eslint-disable-next-line default-param-last
+const RecipeFormReducer = (state = initialState, action) => {
+  switch (action.type) {
     case CHANGE_STATE:
       return {
         ...state,
-        [name]: value,
+        [action.payload.name]: action.payload.value,
       };
     case ADD_INGREDIENT:
       return {
         ...state,
-        ingredients: [...state.ingredients, { name: ingredient }],
+        ingredients: [
+          ...state.ingredients,
+          { name: action.payload.ingredient },
+        ],
       };
     case ADD_CATEGORY:
       return {
         ...state,
-        category: [...state.category, { name: category }],
+        category: [...state.category, { name: action.payload.category }],
       };
-    case CLEAR_STATE:
+    case CLEAR_FORM_STATE:
       return initialState;
     default:
       return state;
