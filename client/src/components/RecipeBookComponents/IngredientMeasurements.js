@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addIngredient } from '../../redux/actions/Recipe.actions';
 import IngredientMeasurementStyles from '../../styles/IngredientMeasurement.styles';
 
-const IngredientMeasurements = () => {
+const IngredientMeasurements = (props) => {
   const [amount, setAmount] = useState(0);
   const [measurement, setMeasurement] = useState('');
   const [item, setItem] = useState('');
@@ -47,9 +47,12 @@ const IngredientMeasurements = () => {
     <IngredientMeasurementStyles>
       <h3>Ingredients</h3>
       <ul>
-        {ingredientState.map(({ name }, index) => (
-          <li key={index}>{name}</li>
-        ))}
+        {props.ingredients.map(({ name }, index) => {
+          return <li key={index}>{name}</li>;
+        })}
+        {ingredientState.map(({ name }, index) => {
+          return <li key={index}>{name}</li>;
+        })}
       </ul>
       <label htmlFor="ingredientAmount">
         Amount

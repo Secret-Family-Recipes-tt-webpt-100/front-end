@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
 import IngredientMeasurements from './RecipeBookComponents/IngredientMeasurements';
 import CategoriesInput from './RecipeBookComponents/CategoriesInput';
-import { formOnChange } from '../redux/actions/Recipe.actions';
+import { clearFormState, formOnChange } from '../redux/actions/Recipe.actions';
 
 import FormStyles from '../styles/Form.styles';
 
@@ -17,6 +17,10 @@ const RecipeForm = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const { description, instructions, source, title } = RecipeFormState;
+
+  useEffect(() => {
+    return dispatch(clearFormState);
+  }, []);
 
   const asyncAddItems = (type, id, itemArray) => {
     itemArray.forEach(async (item) => {

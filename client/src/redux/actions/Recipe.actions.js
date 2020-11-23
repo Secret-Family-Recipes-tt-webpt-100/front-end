@@ -1,4 +1,9 @@
-import { ADD_CATEGORY, ADD_INGREDIENT, CHANGE_STATE } from '../types';
+import {
+  ADD_CATEGORY,
+  ADD_INGREDIENT,
+  CHANGE_STATE,
+  CLEAR_FORM_STATE,
+} from '../types';
 
 export const formOnChange = ({ name, value }) => {
   return {
@@ -23,4 +28,8 @@ export const addCategory = (category) => {
       category,
     },
   };
+};
+
+export const clearFormState = {
+  type: CLEAR_FORM_STATE,
 };
